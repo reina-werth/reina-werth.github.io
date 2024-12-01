@@ -124,6 +124,7 @@ div.scroll-container {
   overflow: auto;
   white-space: nowrap;
   padding: 10px;
+  border: 2px solid black; /* Debugging border */
 }
 
 div.scroll-container a {
