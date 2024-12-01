@@ -118,7 +118,10 @@ h2 {
     margin-top: 40px; /* Add spacing above the heading */
     margin-bottom: 20px; /* Add spacing below the heading */
 }
-
+/* Dice Images */
+.dice-image:hover {
+  transform: scale(1.5); 
+}
 /* Footer */
 footer {
     text-align: center; /* Center-align footer content */
