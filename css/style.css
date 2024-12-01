@@ -122,7 +122,7 @@ h2 {
 .dice-image {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    width: 15%;
+    width: 50px;
     height: auto;
     column-gap: 10px;
     row-gap: 10px;
