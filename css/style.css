@@ -128,7 +128,9 @@ div.scroll-container {
 
 div.scroll-container a {
   padding: 10px;
-  height: 100px;
+}
+.dice-image {
+    height: 100px
 }
 .dice-image:hover {
   transform: scale(1.15); 
