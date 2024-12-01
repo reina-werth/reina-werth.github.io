@@ -122,6 +122,8 @@ h2 {
 .dice-image {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    width: 20%;
+    height: auto;
     column-gap: 10px;
     row-gap: 10px;
     margin-left: 21%;
