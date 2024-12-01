@@ -134,6 +134,7 @@ div.scroll-container {
 
 div.scroll-container a {
   padding: 10px;
+    text-decoration: none;
 }
 div.scroll-container a img{
     height: 100px;
