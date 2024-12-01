@@ -1,0 +1,128 @@
+/*
+Color Palette
+Pale Cream: #FDF6E3
+Deep Lavender: #7868B2
+Lavender Fog: #DDD6F3
+Lilac Mist: #C6B9E6
+Muted Mulberry: #A28AAD
+*/
+
+/* GLOBAL STYLES */
+body {
+    background: #FDF6E3; /* Pale Cream */
+    font-family: 'Verdana', Geneva, sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #7868B2; /* Deep Lavender */
+    margin: 0;
+}
+
+h1 {
+    font-size: 5rem;
+    color: #7868B2; /* Deep Lavender */
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.4rem;
+    color: #7868B2; /* Deep Lavender */
+    margin-bottom: 10px;
+}
+
+/* Navigation Bar */
+.nav-bar-horiz {
+    background: #DDD6F3; /* Lavender Fog */
+    padding: 10px 0;
+    text-align: center;
+}
+.nav-bar-horiz ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.nav-bar-horiz li a {
+    text-decoration: none;
+    color: #7868B2;
+    font-size: 1.6rem;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+.nav-bar-horiz li a:hover,
+.nav-bar-horiz li a.active {
+    background: #7868B2; /* Deep Lavender */
+    color: #FDF6E3; /* Pale Cream */
+}
+
+/* Profile Section */
+.profile {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Vertically center image and text */
+    margin: 30px 0; /* Add spacing between profiles */
+    padding: 20px;
+    background-color: #FDF7F2; /* Match background */
+    border-radius: 12px; /* Rounded edges for a softer look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Profile Images */
+.profile-pic {
+    width: 200px; /* Adjust image size */
+    height: 200px; /* Ensure it's square */
+    border-radius: 50%; /* Keep image circular */
+    object-fit: cover; /* Ensure no distortion */
+    margin-right: 20px; /* Add spacing between image and text */
+}
+
+/* Profile Text */
+.profile-info h2 {
+    font-size: 2.4rem; /* Adjust heading size */
+    margin-bottom: 10px; /* Add spacing below name */
+    color: #7868B2; /* Match primary text color */
+}
+.profile-info p {
+    font-size: 1.6rem;
+    line-height: 1.8; /* Improve readability */
+    margin: 0; /* Remove default margins */
+}
+
+/* Home Page Image */
+.image {
+    display: block;
+    margin: 40px auto; /* Center the image */
+    width: 50%; /* Reduce the width */
+    max-width: 600px; /* Ensure it doesn't get too large */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 12px; /* Optional: Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+/* Main Content Wrapper */
+.content-wrapper {
+    max-width: 80%; /* Limit the content width to 80% of the page */
+    margin: 0 auto; /* Center the content horizontally */
+    padding: 20px; /* Add spacing inside the content wrapper */
+}
+
+/* Paragraphs in the Content Area */
+.content-wrapper p {
+    margin: 20px 0; /* Add vertical spacing between paragraphs */
+    line-height: 1.8; /* Improve readability */
+}
+
+/* Heading Adjustments */
+.content-wrapper h2 {
+    text-align: center; /* Center-align the "Welcome!" heading */
+    margin-top: 40px; /* Add spacing above the heading */
+    margin-bottom: 20px; /* Add spacing below the heading */
+}
+
+/* Footer */
+footer {
+    text-align: center; /* Center-align footer content */
+    margin-top: 40px; /* Add spacing above the footer */
+    padding: 10px; /* Add padding around footer text */
+    background-color: #FDF7F2; /* light background for separation */
+}
