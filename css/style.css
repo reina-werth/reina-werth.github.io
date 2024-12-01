@@ -119,6 +119,17 @@ h2 {
     margin-bottom: 20px; /* Add spacing below the heading */
 }
 /* Dice Images */
+.dice-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 10px;
+    margin-left: 21%;
+    margin-right: 21%;
+    margin-bottom: 20px;
+    border-radius: 12px; /* Optional: Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
 .dice-image:hover {
   transform: scale(1.5); 
 }
