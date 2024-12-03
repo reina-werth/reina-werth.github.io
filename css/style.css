@@ -129,35 +129,36 @@ h3 {
 .container {
     display: flex;
     gap: 20px; /* Space between sections */
-    align-items: stretch; /* Equal height for both sections */
+    align-items: flex-start; /* Align both sections at the top */
     width: 100%; /* Full width of the parent */
-    max-width: 1400px; /* Optional: Limit overall width */
+    max-width: 1400px; /*Limit overall width */
     margin: 0 auto; /* Center the container */
     padding: 10px;
 }
 
 /* Left section (text and script) */
 .left-section {
-    flex: 1 1 40%; /* 40% of the container width */
-    max-width: 40%;
+    flex: 1 1 55%; /* Take up more space, now 55% */
+    max-width: 55%;
     overflow: auto; /* Allow scrolling for long content */
 }
 
 /* Right section (video) */
 .right-section {
-    flex: 1 1 60%; /* 60% of the container width */
-    max-width: 60%;
+    flex: 1 1 45%; /* 45% of the container width */
+    max-width: 45%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Align video at the top */
+    overflow: hidden; /* Prevent overflow of the video */
 }
 
 /* Video element */
 video {
     width: auto; /* Maintain video width */
-    height: 100%; /* Match the height of the parent */
-    max-height: 100%; /* Prevent overflow */
-    object-fit: contain; /* Scale video to fit within the section */
+    max-height: 90vh; /* Limit video height to 90% of the viewport height */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the whole video is visible without cropping */
 }
 
 /* Responsive layout for smaller screens */
@@ -178,6 +179,7 @@ video {
         height: auto; /* Maintain aspect ratio */
     }
 }
+
 
 
 /* Dice Images Scroll*/
