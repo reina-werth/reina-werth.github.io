@@ -102,7 +102,7 @@ h3 {
     width: 50%; /* Reduce the width */
     max-width: 600px; /* Ensure it doesn't get too large */
     height: auto; /* Maintain aspect ratio */
-    border-radius: 12px; /* Optional: Rounded corners for a modern look */
+    border-radius: 12px; /*Rounded corners for a modern look */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 /* Main Content Wrapper */
@@ -131,16 +131,18 @@ h3 {
     gap: 20px; /* Space between sections */
     align-items: flex-start; /* Align both sections at the top */
     width: 100%; /* Full width of the parent */
-    max-width: 1400px; /*Limit overall width */
     margin: 0 auto; /* Center the container */
     padding: 10px;
 }
 
-/* Left section (text and script) */
+/* Left section (text only) */
 .left-section {
-    flex: 1 1 55%; /* Take up more space, now 55% */
+    flex: 1 1 55%; /* Take up 55% */
     max-width: 55%;
     overflow: auto; /* Allow scrolling for long content */
+    display: flex;
+    flex-direction: column; /* Ensure the text content stacks vertically */
+    justify-content: flex-start; /* Align content to the top */
 }
 
 /* Right section (video) */
@@ -148,8 +150,8 @@ h3 {
     flex: 1 1 45%; /* 45% of the container width */
     max-width: 45%;
     display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align video at the top */
+    justify-content: flex-start; /* Align video at the top */
+    align-items: flex-start; /* Ensure video stays at the top */
     overflow: hidden; /* Prevent overflow of the video */
 }
 
@@ -159,6 +161,12 @@ video {
     max-height: 90vh; /* Limit video height to 90% of the viewport height */
     height: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Ensure the whole video is visible without cropping */
+}
+
+/* Script section for the button */
+.script-section {
+    text-align: center;
+    margin-top: 20px;
 }
 
 /* Responsive layout for smaller screens */
