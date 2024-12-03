@@ -140,9 +140,6 @@ h3 {
     flex: 1 1 55%; /* Take up 55% */
     max-width: 55%;
     overflow: auto; /* Allow scrolling for long content */
-    display: flex;
-    flex-direction: column; /* Ensure the text content stacks vertically */
-    justify-content: flex-start; /* Align content to the top */
 }
 
 /* Right section (video) */
@@ -150,8 +147,8 @@ h3 {
     flex: 1 1 45%; /* 45% of the container width */
     max-width: 45%;
     display: flex;
-    justify-content: flex-start; /* Align video at the top */
-    align-items: flex-start; /* Ensure video stays at the top */
+    justify-content: center;
+    align-items: flex-start; /* Align video at the top */
     overflow: hidden; /* Prevent overflow of the video */
 }
 
@@ -187,9 +184,6 @@ video {
         height: auto; /* Maintain aspect ratio */
     }
 }
-
-
-
 /* Dice Images Scroll*/
 div.scroll-container {
   background-color: #DDD6F3; /* Lavender Fog */
