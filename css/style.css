@@ -128,8 +128,8 @@ h3 {
 /* Main container layout */
 .container {
     display: flex;
-    gap: 20px; /* Space between left and right sections */
-    align-items: flex-start;
+    gap: 20px; /* Space between sections */
+    align-items: stretch; /* Make sections equal in height */
     width: 100%; /* Full width of the parent */
     max-width: 1400px; /* Optional: Limit overall width */
     margin: 0 auto; /* Center the container */
@@ -140,7 +140,7 @@ h3 {
 .left-section {
     flex: 1 1 40%; /* 40% of the container width */
     max-width: 40%;
-    overflow: auto; /* Allow scrolling for long content */
+    overflow: auto; /* Allow scrolling if needed */
 }
 
 /* Right section (video) */
@@ -155,10 +155,8 @@ h3 {
 /* Video element */
 video {
     width: 100%; /* Fill the width of its container */
-    max-width: 1000px; /* Optional: Limit video width */
-    height: auto; /* Maintain aspect ratio */
-    max-height: 90vh; /* Prevent it from exceeding the viewport height */
-    border: 1px solid #ccc; /* Optional: Add a border */
+    height: 100%; /* Match the height of its parent */
+    object-fit: cover; /* Ensures the video scales properly without distortion */
     border-radius: 8px; /* Optional: Rounded corners */
 }
 
@@ -177,7 +175,7 @@ video {
 
     video {
         width: 90vw; /* Adjust video size for smaller screens */
-        max-height: 400px; /* Prevent it from becoming too tall */
+        height: auto; /* Maintain aspect ratio */
     }
 }
 
