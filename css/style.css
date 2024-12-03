@@ -127,13 +127,10 @@ h3 {
 /*Video*/
 /* Ensure the container takes full width and uses flexbox */
 .container {
-    display: flex; /* Flex container to align items side by side */
-    align-items: flex-start; /* Align items to the top */
-    justify-content: space-between; /* Space between the paragraph and video */
-    gap: 20px; 
-    width: 100%; /* Make sure the container uses full width */
+    display: flex; /* Enable Flexbox layout */
+    gap: 20px; /* Optional: space between the left and right sections */
+    align-items: flex-start; /* Align items at the top */
 }
-
 .container p {
     flex: 1 1 60%; /* Allow the paragraph to take up 60% of the container's width */
     margin: 0; /* Remove any default margin on the paragraph */
@@ -142,21 +139,37 @@ h3 {
 .container h2{
     align-text:left;
 }
-
-video {
-    flex: 1 1 35%; /* Allow the video to take up 35% of the container's width */
-    height: auto; /* Maintain aspect ratio of the video */
-    max-width: 100%; /* Ensure video doesn't overflow container */
+/* Left section (text + script) */
+.left-section {
+    flex: 1 1 60%; /* Allow the left section to take up 60% of the container */
+    max-width: 100%; /* Make sure it doesn't overflow */
 }
 
+/* Right section (video) */
+.right-section {
+    flex: 1 1 35%; /* Allow the video to take up 35% of the container */
+    max-width: 100%; /* Make sure it doesn't overflow */
+}
+
+video {
+    width: 100%; /* Make sure video takes full width of the right section */
+    height: auto; /* Keep the aspect ratio */
+}
+
+/* Responsive layout for smaller screens */
 @media (max-width: 768px) {
     .container {
-        flex-direction: column; /* Stack the elements vertically on small screens */
-        align-items: center; /* Center them when stacked */
+        flex-direction: column; /* Stack the sections vertically on small screens */
+        align-items: center; /* Center the content */
     }
 
-    .container p, video {
-        max-width: 100%; /* Allow full width on small screens */
+    .left-section, .right-section {
+        flex: 1 1 100%; /* Allow both sections to take full width */
+        max-width: 100%;
+    }
+
+    video {
+        width: 100%; /* Make video responsive */
     }
 }
 
