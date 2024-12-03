@@ -157,7 +157,7 @@ h3 {
 video {
     width: 100%; /* Make video take up full width of its container */
     max-width: 100%; /* Ensure it doesn't exceed container width */
-    height: 100%; /* Maintain aspect ratio */
+    height: 1606px; /* Maintain aspect ratio */
 }
 
 /* Responsive layout for smaller screens */
