@@ -125,22 +125,38 @@ h3 {
     margin-bottom: 20px; /* Add spacing below the heading */
 }
 /*Video*/
+/* Ensure the container takes full width and uses flexbox */
 .container {
-    display: flex; /* Enable Flexbox layout */
-    align-items: flex-start; /* Align items to the top of the container */
-    justify-content: space-between; /* Space between the elements */
-    gap: 20px;
+    display: flex; /* Flex container to align items side by side */
+    align-items: flex-start; /* Align items to the top */
+    justify-content: space-between; /* Space between the paragraph and video */
+    gap: 20px; /* Optional: space between paragraph and video */
+    width: 100%; /* Make sure the container uses full width */
 }
 
-p {
-    max-width: 60%; /* Ensure the paragraph doesn't take up too much space */
+.container p {
+    flex: 1 1 60%; /* Allow the paragraph to take up 60% of the container's width */
+    margin: 0; /* Remove any default margin on the paragraph */
     line-height: 1.6; /* Improve readability */
 }
 
 video {
-    max-width: 35%; /* Set the video width */
-    height: auto; /* Keep the aspect ratio of the video */
+    flex: 1 1 35%; /* Allow the video to take up 35% of the container's width */
+    height: auto; /* Maintain aspect ratio of the video */
+    max-width: 100%; /* Ensure video doesn't overflow container */
 }
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack the elements vertically on small screens */
+        align-items: center; /* Center them when stacked */
+    }
+
+    .container p, video {
+        max-width: 100%; /* Allow full width on small screens */
+    }
+}
+
 
 /* Dice Images Scroll*/
 div.scroll-container {
