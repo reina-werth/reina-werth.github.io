@@ -131,18 +131,11 @@ h3 {
     gap: 20px; /* Optional: space between the left and right sections */
     align-items: flex-start; /* Align items at the top */
 }
-.container p {
-    flex: 1 1 60%; /* Allow the paragraph to take up 60% of the container's width */
-    margin: 0; /* Remove any default margin on the paragraph */
-    line-height: 1.6; /* Improve readability */
-}
-.container h2{
-    align-text:left;
-}
+
 /* Left section (text + script) */
 .left-section {
     flex: 1 1 60%; /* Allow the left section to take up 60% of the container */
-    max-width: 100%; /* Make sure it doesn't overflow */
+    max-width: 100%; /* Ensure it doesn't overflow */
 }
 
 /* Right section (video) */
@@ -156,8 +149,8 @@ h3 {
 /* Video styling */
 video {
     width: 100%; /* Make video take up full width of its container */
-    max-width: 100%; /* Ensure it doesn't exceed container width */
-    height: 1606px; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 80vh; /* Optional: limit the max height to 80% of the viewport height */
 }
 
 /* Responsive layout for smaller screens */
@@ -174,10 +167,9 @@ video {
 
     video {
         width: 100%; /* Make video responsive */
+        max-height: 400px; /* Optional: adjust max height for smaller screens */
     }
 }
-
-
 /* Dice Images Scroll*/
 div.scroll-container {
   background-color: #DDD6F3; /* Lavender Fog */
