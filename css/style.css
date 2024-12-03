@@ -127,9 +127,9 @@ h3 {
 /*Video*/
 /* Ensure the container takes full width and uses flexbox */
 .container {
-    display: flex; /* Enable Flexbox layout */
-    gap: 20px; /* Optional: space between the left and right sections */
-    align-items: flex-start; /* Align items at the top */
+    width: 100%; /* Or a fixed width like 80% or max-width */
+    max-width: 1200px; /* Example: Limit overall width */
+    margin: 0 auto; /* Center the container */
 }
 
 /* Left section (text + script) */
