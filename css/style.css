@@ -125,62 +125,62 @@ h3 {
     margin-bottom: 20px; /* Add spacing below the heading */
 }
 /*Video*/
-/* Main container */
+/* Main container layout */
 .container {
     display: flex;
-    gap: 20px; /* Space between sections */
+    gap: 20px; /* Space between left and right sections */
     align-items: flex-start;
-    width: 100%; /* Full width */
-    max-width: 1400px; /* Allow a wider layout */
+    width: 100%; /* Full width of the parent */
+    max-width: 1400px; /* Optional: Limit overall width */
     margin: 0 auto; /* Center the container */
     padding: 10px;
 }
 
-/* Left section (text or additional content) */
+/* Left section (text and script) */
 .left-section {
-    flex: 1 1 40%; /* Reduce space allocated to the text */
-    max-width: 40%; /* Explicit max width */
-    overflow-y: auto; /* Allow scrolling if the text is long */
+    flex: 1 1 40%; /* 40% of the container width */
+    max-width: 40%;
+    overflow: auto; /* Allow scrolling for long content */
 }
 
-/* Right section (video and output) */
+/* Right section (video) */
 .right-section {
-    flex: 1 1 60%; /* Allocate more space for the video section */
-    max-width: 60%; /* Ensure it gets 60% of the container width */
+    flex: 1 1 60%; /* 60% of the container width */
+    max-width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Force the video to fill available space */
+/* Video element */
 video {
-    width: 100%; /* Make it fill the container */
-    max-width: 800px; /* Optional: Cap the width to avoid overly large sizes */
+    width: 100%; /* Fill the width of its container */
+    max-width: 1000px; /* Optional: Limit video width */
     height: auto; /* Maintain aspect ratio */
-    max-height: 90vh; /* Prevent overflow from the viewport */
-    border: 1px solid #ccc; /* Optional: Add a border for clarity */
+    max-height: 90vh; /* Prevent it from exceeding the viewport height */
+    border: 1px solid #ccc; /* Optional: Add a border */
     border-radius: 8px; /* Optional: Rounded corners */
 }
 
-/* Responsive adjustments for smaller screens */
+/* Responsive layout for smaller screens */
 @media (max-width: 768px) {
     .container {
         flex-direction: column; /* Stack sections vertically */
-        align-items: center;
+        align-items: center; /* Center sections */
     }
 
     .left-section,
     .right-section {
-        flex: 1 1 100%; /* Each section gets full width */
-        max-width: 100%; /* Remove width restrictions */
+        flex: 1 1 100%; /* Full width for both sections */
+        max-width: 100%;
     }
 
     video {
-        width: 90vw; /* Make the video responsive to the screen size */
-        max-width: 100%; /* Prevent it from exceeding the container */
-        max-height: 400px; /* Ensure it doesn’t take up too much space vertically */
+        width: 90vw; /* Adjust video size for smaller screens */
+        max-height: 400px; /* Prevent it from becoming too tall */
     }
 }
+
 /* Dice Images Scroll*/
 div.scroll-container {
   background-color: #DDD6F3; /* Lavender Fog */
