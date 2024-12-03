@@ -126,11 +126,14 @@ h3 {
 }
 /*Video*/
 /* Ensure the container takes full width and uses flexbox */
+/* Main container */
 .container {
-    width: 100%; /* Or a fixed width like 80% or max-width */
-    max-width: 1200px; /* Example: Limit overall width */
-    margin: 0 auto; /* Center the container */
-}
+    display: flex;
+    gap: 20px; /* Space between sections */
+    align-items: flex-start;
+    width: 100%; /* Full width */
+    max-width: 1400px; /* Adjust to fit
+    }
 
 /* Left section (text + script) */
 .left-section {
