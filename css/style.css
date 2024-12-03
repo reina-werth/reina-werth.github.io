@@ -129,7 +129,7 @@ h3 {
 .container {
     display: flex;
     gap: 20px; /* Space between sections */
-    align-items: stretch; /* Make sections equal in height */
+    align-items: stretch; /* Equal height for both sections */
     width: 100%; /* Full width of the parent */
     max-width: 1400px; /* Optional: Limit overall width */
     margin: 0 auto; /* Center the container */
@@ -138,15 +138,15 @@ h3 {
 
 /* Left section (text and script) */
 .left-section {
-    flex: 1 1 65%; /* 65% of the container width */
-    max-width: 65%;
-    overflow: auto; /* Allow scrolling if needed */
+    flex: 1 1 40%; /* 40% of the container width */
+    max-width: 40%;
+    overflow: auto; /* Allow scrolling for long content */
 }
 
 /* Right section (video) */
 .right-section {
-    flex: 1 1 35%; /* 35% of the container width */
-    max-width: 35%;
+    flex: 1 1 60%; /* 60% of the container width */
+    max-width: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -154,10 +154,10 @@ h3 {
 
 /* Video element */
 video {
-    width: 100%; /* Fill the width of its container */
-    height: 100%; /* Match the height of its parent */
-    object-fit: cover; /* Ensures the video scales properly without distortion */
-    border-radius: 8px; /* Optional: Rounded corners */
+    width: auto; /* Maintain video width */
+    height: 100%; /* Match the height of the parent */
+    max-height: 100%; /* Prevent overflow */
+    object-fit: contain; /* Scale video to fit within the section */
 }
 
 /* Responsive layout for smaller screens */
@@ -178,6 +178,7 @@ video {
         height: auto; /* Maintain aspect ratio */
     }
 }
+
 
 /* Dice Images Scroll*/
 div.scroll-container {
