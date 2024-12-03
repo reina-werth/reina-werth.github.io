@@ -130,7 +130,7 @@ h3 {
     display: flex; /* Flex container to align items side by side */
     align-items: flex-start; /* Align items to the top */
     justify-content: space-between; /* Space between the paragraph and video */
-    gap: 20px; /* Optional: space between paragraph and video */
+    gap: 20px; 
     width: 100%; /* Make sure the container uses full width */
 }
 
@@ -138,6 +138,9 @@ h3 {
     flex: 1 1 60%; /* Allow the paragraph to take up 60% of the container's width */
     margin: 0; /* Remove any default margin on the paragraph */
     line-height: 1.6; /* Improve readability */
+}
+.container h2{
+    align-text:left;
 }
 
 video {
