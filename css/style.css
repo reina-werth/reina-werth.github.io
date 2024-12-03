@@ -134,17 +134,19 @@ h3 {
 
 /* Left section (text + script) */
 .left-section {
-    flex: 1 1 60%; /* Allow the left section to take up 60% of the container */
+    flex: 1 1 25%; /* Allow the left section to take up 60% of the container */
     max-width: 100%; /* Ensure it doesn't overflow */
 }
 
 /* Right section (video) */
 .right-section {
-    flex: 1 1 35%; /* Right section takes up 35% of the container width */
-    max-width: 100%; /* Ensure it doesn't overflow */
-    display: flex; /* Use flexbox in the right section */
-    justify-content: center; /* Center the video horizontally */
+    flex: 2 1 60%; 
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 /* Video styling */
 video {
