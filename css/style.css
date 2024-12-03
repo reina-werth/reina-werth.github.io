@@ -150,7 +150,7 @@ h3 {
 video {
     width: 100%; /* Make video take up full width of its container */
     height: auto; /* Maintain aspect ratio */
-    max-height: 80vh; /* Optional: limit the max height to 80% of the viewport height */
+    max-height: 100vh; /* limit the max height to 80% of the viewport height */
 }
 
 /* Responsive layout for smaller screens */
