@@ -147,13 +147,17 @@ h3 {
 
 /* Right section (video) */
 .right-section {
-    flex: 1 1 35%; /* Allow the video to take up 35% of the container */
-    max-width: 100%; /* Make sure it doesn't overflow */
+    flex: 1 1 35%; /* Right section takes up 35% of the container width */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    display: flex; /* Use flexbox in the right section */
+    justify-content: center; /* Center the video horizontally */
 }
 
+/* Video styling */
 video {
-    width: 100%; /* Make sure video takes full width of the right section */
-    height: auto; /* Keep the aspect ratio */
+    width: 100%; /* Make video take up full width of its container */
+    max-width: 100%; /* Ensure it doesn't exceed container width */
+    height: auto; /* Maintain aspect ratio */
 }
 
 /* Responsive layout for smaller screens */
