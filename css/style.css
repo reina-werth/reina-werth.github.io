@@ -124,6 +124,24 @@ h3 {
     margin-top: 40px; /* Add spacing above the heading */
     margin-bottom: 20px; /* Add spacing below the heading */
 }
+/*Video*/
+.container {
+    display: flex; /* Enable Flexbox layout */
+    align-items: flex-start; /* Align items to the top of the container */
+    justify-content: space-between; /* Space between the elements */
+    gap: 20px;
+}
+
+p {
+    max-width: 60%; /* Ensure the paragraph doesn't take up too much space */
+    line-height: 1.6; /* Improve readability */
+}
+
+video {
+    max-width: 35%; /* Set the video width */
+    height: auto; /* Keep the aspect ratio of the video */
+}
+
 /* Dice Images Scroll*/
 div.scroll-container {
   background-color: #DDD6F3; /* Lavender Fog */
