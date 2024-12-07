@@ -46,23 +46,20 @@
         function handleFile(event) {
             let file = event.target.files[0];  // Get the file from the input
             if (file && file.type.startsWith('image')) {  // Check if the file is an image
-                // Create an img element to display the uploaded image
-                img = createImg(URL.createObjectURL(file), 'Uploaded Image');
-                img.hide();  // Hide the image (we only display it on the canvas)
-
-                // Ensure image is loaded before drawing
-                img.onload = () => {
-                    // Create the canvas and draw the image
-                    createCanvas(640, 520);
-                    image(img, 0, 0, width, height);  // Draw the uploaded image on the canvas
-
-                    // Classify the uploaded image using the model
-                    console.log("Classifying image...");
-                    classifier.classify(img, gotResults);
-                };
+                // Load the image directly with p5.js loadImage() method
+                img = loadImage(URL.createObjectURL(file), imageLoaded);
             } else {
                 alert("Please upload a valid image.");
             }
+        }
+
+        // This function is called when the image has been successfully loaded
+        function imageLoaded() {
+            console.log("Image loaded successfully.");
+            createCanvas(640, 520);
+            image(img, 0, 0, width, height);  // Draw the uploaded image on the canvas
+            console.log("Classifying image...");
+            classifier.classify(img, gotResults);  // Classify the image
         }
 
         // STEP 4: Handle the classification result
