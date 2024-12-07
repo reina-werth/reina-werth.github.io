@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachable Machine Image Classification</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ml5@2.3.0/dist/ml5.min.js"></script>
+</head>
+<body>  
+    <!-- Canvas for image display and classification result -->
+    <div id="canvas-container">
+        <p>Choose an image to classify:</p>
+        <input type="file" id="fileInput" onchange="handleFile(event)">
+    </div>
+
+    <div id="classification-result">
+        <p><strong>Label:</strong> <span id="label">Waiting...</span></p>
+        <p><strong>Confidence:</strong> <span id="confidence">0.00</span></p>
+    </div>
+
+    <script>
+        let video;
+        let label = "Upload an Image";
+        let confidence = 0.0;
+        let classifier;
+        let modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
+        let input;
+        let img;
+
+        // STEP 1: Load the model!
+        function preload() {
+            classifier = ml5.imageClassifier(modelURL + 'model.json');
+        }
+
+        // STEP 2: Set up file input for image upload
+        function setup() {
+            createCanvas(640, 520);
+            input = createFileInput(handleFile);
+            input.position(20, 20);  // Position the input below the canvas
+        }
+
+        // STEP 3: Draw the uploaded image and classification results
+        function draw() {
+            background(0);
+            textSize(32);
+            textAlign(CENTER, CENTER);
+            fill(255);
+            text(label + " " + confidence, width / 2, height - 16);
+
+            if (img) {
+                image(img, 0, 0, width, 480);
+            }
+        }
+
+        // STEP 4: Handle classification results
+        function gotResults(error, results) {
+            if (error) {
+                console.error(error);
+                return;
+            }
+            label = results[0].label;
+            confidence = nf(results[0].confidence, 0, 2);
+
+            // Display the classification result
+            document.getElementById('label').textContent = label;
+            document.getElementById('confidence').textContent = confidence;
+        }
+
+        // STEP 5: Handle file upload and perform classification
+        function handleFile(file) {
+            print(file);
+            if (file.type === 'image') {
+                img = createImg(file.data, '');
+                img.hide();
+                classifier.classify(img, gotResults);
+            } else {
+                img = null;
+            }
+        }
+
+        // Initialize p5.js and set up the canvas
+        function setupCanvas() {
+            createCanvas(640, 520);
+            input.position(20, 60);  // Position the input element below the canvas
+        }
+        
+        window.onload = function() {
+            setup();
+            setupCanvas();
+        }
+    </script>
+</body>
+</html>
