@@ -29,20 +29,19 @@
         let img;
         const modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
 
-        // STEP 1: Load the model once the page is ready
+        // STEP 1: Load the model when the page is ready
         function preload() {
             console.log("Loading model...");
             classifier = ml5.imageClassifier(modelURL + 'model.json', modelLoaded);
         }
 
-        // STEP 2: This function will be called when the model is loaded
+        // STEP 2: Model loaded callback
         function modelLoaded() {
             console.log("Model Loaded!");
-            // Update the label to let the user know the model is ready
             document.getElementById('label').textContent = "Model Loaded!";
         }
 
-        // STEP 3: Handle the file input and trigger classification
+        // STEP 3: Handle file input and trigger classification
         function handleFile(event) {
             let file = event.target.files[0];  // Get the file from the input
             if (file && file.type.startsWith('image')) {  // Check if the file is an image
@@ -53,16 +52,16 @@
             }
         }
 
-        // This function is called when the image has been successfully loaded
+        // STEP 4: When the image is loaded, this function is called
         function imageLoaded() {
             console.log("Image loaded successfully.");
-            createCanvas(640, 520);
+            createCanvas(640, 520);  // Create the canvas after the image is loaded
             image(img, 0, 0, width, height);  // Draw the uploaded image on the canvas
             console.log("Classifying image...");
             classifier.classify(img, gotResults);  // Classify the image
         }
 
-        // STEP 4: Handle the classification result
+        // STEP 5: Handle the classification result
         function gotResults(error, results) {
             if (error) {
                 console.error("Error during classification:", error);
