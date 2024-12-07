@@ -24,12 +24,12 @@
 
     <script>
         let classifier;
-        let label = "Upload an Image";
+        let label = "Waiting for Image...";
         let confidence = 0.0;
         let img;
         const modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
 
-        // STEP 1: Load the model
+        // STEP 1: Load the model once the page is ready
         function preload() {
             classifier = ml5.imageClassifier(modelURL + 'model.json');
         }
@@ -41,9 +41,15 @@
                 // Create an img element to display the uploaded image
                 img = createImg(URL.createObjectURL(file), '');
                 img.hide();  // Hide the image (we only display it on the canvas)
-                classifier.classify(img, gotResults);  // Classify the image using the model
-                createCanvas(640, 520);  // Create the canvas
-                image(img, 0, 0, width, height);  // Draw the image on the canvas
+                
+                // Create the canvas and draw the image
+                createCanvas(640, 520);
+                image(img, 0, 0, width, height);  // Draw the uploaded image on the canvas
+                
+                // Classify the uploaded image using the model
+                classifier.classify(img, gotResults);
+            } else {
+                alert("Please upload a valid image.");
             }
         }
 
@@ -61,9 +67,9 @@
             document.getElementById('confidence').textContent = confidence;
         }
 
-        // Initialize the model when the page is loaded
+        // Initialize the model when the page is ready
         window.onload = function() {
-            preload();  // Preload the model when the page is ready
+            preload();  // Preload the model when the page is loaded
         };
     </script>
 </body>
