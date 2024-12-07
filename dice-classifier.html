@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teachable Machine Image Classification</title>
     
-    <!-- p5.js Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    
-    <!-- ml5.js Library -->
-    <script src="https://cdn.jsdelivr.net/npm/ml5@2.3.0/dist/ml5.min.js"></script>
 </head>
 <body>
     <h1>Upload an Image to Classify</h1>
@@ -27,64 +22,62 @@
     </div>
 
     <script>
-        let classifier;
-        let label = "Waiting for Image...";
-        let confidence = 0.0;
-        let img;
-        const modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
+      
+// Video
+let video;
+let label = "Upload an Image";
+let confidence = 0.0;
+let classifier;
+let modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
 
-        // STEP 1: Load the model when the page is ready
-        function preload() {
-            console.log("Loading model...");
-            classifier = ml5.imageClassifier(modelURL + 'model.json', modelLoaded);
-        }
+let input;
+let img;
 
-        // STEP 2: Model loaded callback
-        function modelLoaded() {
-            console.log("Model Loaded!");
-            document.getElementById('label').textContent = "Model Loaded!";
-        }
+// STEP 1: Load the model!
+function preload() {
+  classifier = ml5.imageClassifier(modelURL + 'model.json');
+}
 
-        // STEP 3: Handle file input and trigger classification
-        function handleFile(event) {
-            let file = event.target.files[0];  // Get the file from the input
-            if (file && file.type.startsWith('image')) {  // Check if the file is an image
-                // Load the image directly with p5.js loadImage() method
-                img = loadImage(URL.createObjectURL(file), imageLoaded);
-            } else {
-                alert("Please upload a valid image.");
-            }
-        }
+  // Image upload
+function setup() {
+  createCanvas(640, 520);
+  input = createFileInput(handleFile);
+  input.position();
+}
 
-        // STEP 4: When the image is loaded, this function is called
-        function imageLoaded() {
-            console.log("Image loaded successfully.");
-            createCanvas(640, 520);  // Create the canvas after the image is loaded
-            image(img, 0, 0, width, height);  // Draw the uploaded image on the canvas
-            console.log("Classifying image...");
-            classifier.classify(img, gotResults);  // Classify the image
-        }
+function draw() {
+  background(0);
+  
+  textSize(32)
+  textAlign(CENTER, CENTER);
+  fill(255);
+  text(label + " " + confidence, width / 2, height - 16)
+  
+  if (img) {
+    image(img, 0, 0, width, 480)
+  }
+}
 
-        // STEP 5: Handle the classification result
-        function gotResults(error, results) {
-            if (error) {
-                console.error("Error during classification:", error);
-                return;
-            }
-            console.log("Results:", results);
-
-            label = results[0].label;
-            confidence = nf(results[0].confidence, 0, 2);
-
-            // Display the result in the page
-            document.getElementById('label').textContent = label;
-            document.getElementById('confidence').textContent = confidence;
-        }
-
-        // Initialize the model when the page is ready
-        window.onload = function() {
-            preload();  // Preload the model when the page is loaded
-        };
+// STEP 3: Get the classification!
+function gotResults(error, results) {
+  if (error) {
+    console.error(error);
+    return;
+  }
+  label = results[0].label;
+  confidence = nf(results[0].confidence, 0, 2);
+}
+// STEP 2: Handle the file-upload and do the classification
+function handleFile(file) {
+  print(file);
+  if (file.type === 'image') {
+    img = createImg(file.data, '');
+    img.hide();
+    classifier.classify(img, gotResults);
+  } else {
+    img = null;
+  }
+}
     </script>
 </body>
 </html>
