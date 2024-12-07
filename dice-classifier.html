@@ -10,25 +10,23 @@
 <body>
     <h1>Upload an Image to Classify</h1>
     
-    <!-- Image upload input -->
+    <!-- Single image upload button -->
     <input type="file" id="fileInput" onchange="handleFile(event)">
     
-    <!-- Canvas for displaying the uploaded image -->
+    <!-- Canvas to display the image -->
     <div id="canvas-container"></div>
     
-    <!-- Classification result -->
+    <!-- Classification results -->
     <div id="classification-result">
         <p><strong>Label:</strong> <span id="label">Waiting...</span></p>
         <p><strong>Confidence:</strong> <span id="confidence">0.00</span></p>
     </div>
 
     <script>
-        // Global variables for p5.js and ml5
         let classifier;
         let label = "Upload an Image";
         let confidence = 0.0;
         let img;
-
         const modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
 
         // STEP 1: Load the model
@@ -36,15 +34,16 @@
             classifier = ml5.imageClassifier(modelURL + 'model.json');
         }
 
-        // STEP 2: Handle the image file upload
+        // STEP 2: Handle the file input and trigger classification
         function handleFile(event) {
-            let file = event.target.files[0];
-            if (file && file.type.startsWith('image')) {
+            let file = event.target.files[0];  // Get the file from the input
+            if (file && file.type.startsWith('image')) {  // Check if the file is an image
+                // Create an img element to display the uploaded image
                 img = createImg(URL.createObjectURL(file), '');
-                img.hide();  // Hide the image (p5.js creates it, but we don't display it directly)
-                classifier.classify(img, gotResults);
-                createCanvas(640, 520);  // Create the canvas to display the image
-                image(img, 0, 0, width, height);  // Draw the uploaded image on the canvas
+                img.hide();  // Hide the image (we only display it on the canvas)
+                classifier.classify(img, gotResults);  // Classify the image using the model
+                createCanvas(640, 520);  // Create the canvas
+                image(img, 0, 0, width, height);  // Draw the image on the canvas
             }
         }
 
@@ -56,15 +55,15 @@
             }
             label = results[0].label;
             confidence = nf(results[0].confidence, 0, 2);
-            
-            // Update the result on the page
+
+            // Display the result in the page
             document.getElementById('label').textContent = label;
             document.getElementById('confidence').textContent = confidence;
         }
 
-        // Initialize the canvas and image handling when the page loads
+        // Initialize the model when the page is loaded
         window.onload = function() {
-            preload();  // Preload the model
+            preload();  // Preload the model when the page is ready
         };
     </script>
 </body>
