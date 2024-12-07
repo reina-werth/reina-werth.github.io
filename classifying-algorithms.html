@@ -43,79 +43,11 @@
             <p>Upload an image below to classify it using our trained algorithm. Please note that the best results are often achieved when uploading clear, static images rather than using a webcam. You can also download some of our images and upload them to test!</p>
 
             <h3>Upload an Image to Classify</h3>
-            <input type="file" id="fileInput" onchange="handleFile(event)"><br><br>
+            <h2>Try the Image Classification</h2>
+            <p>Click the iframe below to try out our image classification algorithm by uploading your own dice images:</p>
 
-            <!-- Image classification result section -->
-            <div id="image-result">
-                <h3>Classification Result</h3>
-                <p id="image-label">Label: Waiting...</p>
-                <p id="image-confidence">Confidence: 0.00</p>
-            </div>
-
-            <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/ml5@2.3.0/dist/ml5.min.js"></script>
-
-            <script type="text/javascript">
-                // Original JavaScript code embedded into HTML (without converting to JSON)
-
-                let classifier;
-                let modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
-                let img;
-                let label = "Upload an Image";
-                let confidence = 0.0;
-
-                // STEP 1: Load the model!
-                function preload() {
-                    classifier = ml5.imageClassifier(modelURL + 'model.json');
-                }
-
-                // STEP 2: Handle the file-upload and do the classification
-                function handleFile(event) {
-                    const file = event.target.files[0];
-                    if (file && file.type === 'image') {
-                        img = createImg(URL.createObjectURL(file), 'Uploaded Image');
-                        img.hide();
-                        classifier.classify(img, gotResults);
-                    } else {
-                        img = null;
-                    }
-                }
-
-                // STEP 3: Get the classification!
-                function gotResults(error, results) {
-                    if (error) {
-                        console.error(error);
-                        return;
-                    }
-                    label = results[0].label;
-                    confidence = nf(results[0].confidence, 0, 2);
-                    document.getElementById("image-label").innerText = "Label: " + label;
-                    document.getElementById("image-confidence").innerText = "Confidence: " + confidence;
-                }
-
-                // p5.js setup function
-                function setup() {
-                    createCanvas(640, 520);
-                    noLoop();
-                }
-
-                function draw() {
-                    background(0);
-                    textSize(32);
-                    textAlign(CENTER, CENTER);
-                    fill(255);
-                    text(label + " " + confidence, width / 2, height - 16);
-                    
-                    if (img) {
-                        image(img, 0, 0, width, 480);
-                    }
-                }
-
-                // Initialize the p5.js canvas
-                window.onload = setup;
-            </script>
+            <!-- Embedding the image classification page using iframe -->
+            <iframe src="dice-classifer.js" width="100%" height="600px" frameborder="0"></iframe>
         </main>
 
 
