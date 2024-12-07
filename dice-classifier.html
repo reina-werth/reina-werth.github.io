@@ -7,53 +7,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ml5@2.3.0/dist/ml5.min.js"></script>
 </head>
-<body>  
-    <!-- Canvas for image display and classification result -->
-    <div id="canvas-container">
-        <p>Choose an image to classify:</p>
-        <input type="file" id="fileInput" onchange="handleFile(event)">
-    </div>
-
+<body>
+    <h1>Upload an Image to Classify</h1>
+    
+    <!-- Image upload input -->
+    <input type="file" id="fileInput" onchange="handleFile(event)">
+    
+    <!-- Canvas for displaying the uploaded image -->
+    <div id="canvas-container"></div>
+    
+    <!-- Classification result -->
     <div id="classification-result">
         <p><strong>Label:</strong> <span id="label">Waiting...</span></p>
         <p><strong>Confidence:</strong> <span id="confidence">0.00</span></p>
     </div>
 
     <script>
-        let video;
+        // Global variables for p5.js and ml5
+        let classifier;
         let label = "Upload an Image";
         let confidence = 0.0;
-        let classifier;
-        let modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
-        let input;
         let img;
 
-        // STEP 1: Load the model!
+        const modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
+
+        // STEP 1: Load the model
         function preload() {
             classifier = ml5.imageClassifier(modelURL + 'model.json');
         }
 
-        // STEP 2: Set up file input for image upload
-        function setup() {
-            createCanvas(640, 520);
-            input = createFileInput(handleFile);
-            input.position(20, 20);  // Position the input below the canvas
-        }
-
-        // STEP 3: Draw the uploaded image and classification results
-        function draw() {
-            background(0);
-            textSize(32);
-            textAlign(CENTER, CENTER);
-            fill(255);
-            text(label + " " + confidence, width / 2, height - 16);
-
-            if (img) {
-                image(img, 0, 0, width, 480);
+        // STEP 2: Handle the image file upload
+        function handleFile(event) {
+            let file = event.target.files[0];
+            if (file && file.type.startsWith('image')) {
+                img = createImg(URL.createObjectURL(file), '');
+                img.hide();  // Hide the image (p5.js creates it, but we don't display it directly)
+                classifier.classify(img, gotResults);
+                createCanvas(640, 520);  // Create the canvas to display the image
+                image(img, 0, 0, width, height);  // Draw the uploaded image on the canvas
             }
         }
 
-        // STEP 4: Handle classification results
+        // STEP 3: Handle the classification result
         function gotResults(error, results) {
             if (error) {
                 console.error(error);
@@ -61,34 +56,16 @@
             }
             label = results[0].label;
             confidence = nf(results[0].confidence, 0, 2);
-
-            // Display the classification result
+            
+            // Update the result on the page
             document.getElementById('label').textContent = label;
             document.getElementById('confidence').textContent = confidence;
         }
 
-        // STEP 5: Handle file upload and perform classification
-        function handleFile(file) {
-            print(file);
-            if (file.type === 'image') {
-                img = createImg(file.data, '');
-                img.hide();
-                classifier.classify(img, gotResults);
-            } else {
-                img = null;
-            }
-        }
-
-        // Initialize p5.js and set up the canvas
-        function setupCanvas() {
-            createCanvas(640, 520);
-            input.position(20, 60);  // Position the input element below the canvas
-        }
-        
+        // Initialize the canvas and image handling when the page loads
         window.onload = function() {
-            setup();
-            setupCanvas();
-        }
+            preload();  // Preload the model
+        };
     </script>
 </body>
 </html>
