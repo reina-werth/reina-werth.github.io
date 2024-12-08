@@ -73,7 +73,7 @@ function draw() {
     
     image(img, x, y, newWidth, newHeight);
   } else {
-    console.log("No image loaded");
+    console.error("No image loaded");
   }
 }
 
@@ -102,8 +102,19 @@ function handleFile(file) {
     confidence = 0.0;
     
     // Display the uploaded image
-    draw(); // Ensure the uploaded image is displayed on the canvas
+    if (img) {
+      console.log("Displaying uploaded image:", img);
+      draw(); // Ensure the uploaded image is displayed on the canvas
+    } else {
+      console.error("No image loaded");
+    }
     
     // Classify the image
+    classifier.classify(img, gotResults);
+  } else {
+    console.error("Unsupported file type. Please upload an image.");
+    label = "Invalid file type. Please upload an image.";
+    confidence = 0.0;
+    img = null;
   }
 }
