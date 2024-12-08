@@ -4,8 +4,6 @@ const LABEL_SIZE = 32;
 const CANVAS_WIDTH = 640;
 const CANVAS_HEIGHT = 520;
 
-// Video
-let video;
 let label = "Upload an Image";
 let confidence = 0.0;
 let classifier;
@@ -29,29 +27,11 @@ function modelLoaded() {
 
 // Image upload
 function setup() {
-  // Create the canvas
   const canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
-  canvas.parent('canvas-container'); // Attach to the correct container
+  canvas.parent('canvas-container');
 
-  // Create the file input (upload button)
   input = createFileInput(handleFile);
-  
-  // Position the upload button just below the canvas
   input.position(canvas.position().x, canvas.position().y + canvas.height + UPLOAD_BUTTON_SPACING);
-}
-
-function gotResults(error, results) {
-  if (error) {
-    console.error(error);
-    label = "Error during classification";
-    confidence = 0.0;
-  } else if (results.length > 0) {
-    label = results[0].label;
-    confidence = results[0].confidence;
-  }
-  
-  // Redraw the canvas with the new results
-  draw();
 }
 
 function draw() {
@@ -59,59 +39,53 @@ function draw() {
   
   textSize(LABEL_SIZE);
   textAlign(CENTER, CENTER);
-  fill(255); // White text color
+  fill(255);
   
-  // Add a semi-transparent background rectangle
-  let rectHeight = 40; // Adjust height as needed
-  let rectY = height - rectHeight - 10; // Adjust vertical position as needed
-  fill(0, 150); // Semi-transparent black
+  let rectHeight = 40;
+  let rectY = height - rectHeight - 10;
+  fill(0, 150);
   rect(0, rectY, width, rectHeight);
-  
-  // Display the label and confidence
+
   if (confidence > 0) {
-    fill(255); // White text color
+    fill(255);
     text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
   } else {
-    fill(255); // White text color
+    fill(255);
     text(label, width / 2, height - 16);
   }
-  
-  // Display the uploaded image without stretching
+
   if (img) {
     let imgWidth = img.width;
     let imgHeight = img.height;
-    
-    // Calculate the scale to maintain the aspect ratio
     let scale = min(width / imgWidth, height / imgHeight);
-    
-    // Calculate the new dimensions based on the scale
     let newWidth = imgWidth * scale;
     let newHeight = imgHeight * scale;
-    
-    // Center the image
     let x = (width - newWidth) / 2;
     let y = (height - newHeight) / 2;
-    
     image(img, x, y, newWidth, newHeight);
   }
-  
-  // Ensure the canvas updates with the new results
-  if (label && confidence >= 0) {
-    draw(); // Force redraw after updating classification
+}
+
+function gotResults(error, results) {
+  if (error) {
+    console.error(error);
+    label = "Error during classification";
+    confidence = 0.0;
+  } else {
+    label = results[0].label;
+    confidence = results[0].confidence;
   }
+  
+  draw();
 }
 
 function handleFile(file) {
   if (file.type === 'image') {
-    img = createImg(file.data, null); // Explicitly set the second parameter to null
-    img.hide(); // Hide the uploaded image element
+    img = createImg(file.data, null);
+    img.hide();
     label = "Classifying...";
     confidence = 0.0;
-    
-    // Update the display to show the uploaded image
-    draw(); // Ensure the uploaded image is displayed on the canvas
-    
-    // Classify the image
+    draw();
     classifier.classify(img, gotResults);
   } else {
     console.error("Unsupported file type. Please upload an image.");
