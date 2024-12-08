@@ -64,9 +64,9 @@ function draw() {
     let y = (height - newHeight) / 2;
     
     // Add padding around the image
-    let padding = 20;
-    x = max(padding, x);
-    y = max(padding, y);
+    let topBottomPadding = 40;
+    y = max(topBottomPadding, y);
+    
     
     image(img, x, y, newWidth, newHeight);
   }
