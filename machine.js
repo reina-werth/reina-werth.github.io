@@ -40,6 +40,20 @@ function setup() {
   input.position(canvas.position().x, canvas.position().y + canvas.height + UPLOAD_BUTTON_SPACING);
 }
 
+function gotResults(error, results) {
+  if (error) {
+    console.error(error);
+    label = "Error during classification";
+    confidence = 0.0;
+  } else if (results.length > 0) {
+    label = results[0].label;
+    confidence = results[0].confidence;
+  }
+  
+  // Redraw the canvas with the new results
+  draw();
+}
+
 function draw() {
   background(0);
   
@@ -80,22 +94,13 @@ function draw() {
     
     image(img, x, y, newWidth, newHeight);
   }
-}
-
-
-function gotResults(error, results) {
-  if (error) {
-    console.error(error);
-    label = "Error during classification";
-    confidence = 0.0;
-  } else {
-    label = results[0].label;
-    confidence = results[0].confidence;
-  }
   
-  // Redraw the canvas with the new results
-  draw();
+  // Ensure the canvas updates with the new results
+  if (label && confidence >= 0) {
+    draw(); // Force redraw after updating classification
+  }
 }
+
 
 function handleFile(file) {
   if (file.type === 'image') {
