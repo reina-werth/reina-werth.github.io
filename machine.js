@@ -63,12 +63,20 @@ function draw() {
     let x = (width - newWidth) / 2;
     let y = (height - newHeight) / 2;
     
-    // Add padding around the image
-    let BottomPadding = 40;
-    y = height - newHeight - bottomPadding;
-    
+    // Adjust padding to ensure text doesn't overlap
+    let padding = 20; // Increase padding as needed
+    y = max(padding, y);
     
     image(img, x, y, newWidth, newHeight);
+    
+    // Draw the result text on top of the image
+    fill('#7868B2'); // Match CSS text color
+    textAlign(CENTER, CENTER);
+    if (confidence > 0) {
+      text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
+    } else {
+      text(label, width / 2, height - 16);
+    }
   }
 }
 
