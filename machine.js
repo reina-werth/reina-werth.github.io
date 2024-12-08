@@ -4,7 +4,6 @@ const LABEL_SIZE = 32;
 const CANVAS_WIDTH = 640;
 const CANVAS_HEIGHT = 520;
 const TOP_PADDING = 20;  // Padding at the top
-const BOTTOM_PADDING = 20;  // Padding at the bottom
 
 let label = "Upload an Image";
 let confidence = 0.0;
@@ -44,16 +43,16 @@ function draw() {
   fill('#7868B2'); // Set fill color to match the CSS style
 
   let rectHeight = 40;
-  let rectY = height - rectHeight - 10;
+  let rectY = TOP_PADDING;
   fill(0, 150);
   rect(0, rectY, width, rectHeight);
 
   if (confidence > 0) {
     fill('#7868B2'); // Match CSS text color
-    text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
+    text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, rectY + rectHeight / 2);
   } else {
     fill('#7868B2'); // Match CSS text color
-    text(label, width / 2, height - 16);
+    text(label, width / 2, rectY + rectHeight / 2);
   }
 
   if (img) {
@@ -67,18 +66,18 @@ function draw() {
     
     image(img, x, y, newWidth, newHeight);
     
-    // Add a black bar behind the text with padding
+    // Add a black bar behind the text with top padding
     fill(0);
     noStroke();
-    rect(0, y - TOP_PADDING, width, BOTTOM_PADDING + 40); // Adjust the position as needed
+    rect(0, y - TOP_PADDING, width, 40); // Adjust the position as needed
     
     // Draw the result text on top of the image
     fill('#7868B2'); // Match CSS text color
     textAlign(CENTER, CENTER);
     if (confidence > 0) {
-      text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
+      text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, rectY + rectHeight / 2);
     } else {
-      text(label, width / 2, height - 16);
+      text(label, width / 2, rectY + rectHeight / 2);
     }
   }
 }
