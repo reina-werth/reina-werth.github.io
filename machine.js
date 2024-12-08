@@ -3,6 +3,8 @@ const UPLOAD_BUTTON_SPACING = 10;
 const LABEL_SIZE = 32;
 const CANVAS_WIDTH = 640;
 const CANVAS_HEIGHT = 520;
+const TOP_PADDING = 20;  // Padding at the top
+const BOTTOM_PADDING = 20;  // Padding at the bottom
 
 let label = "Upload an Image";
 let confidence = 0.0;
@@ -65,10 +67,10 @@ function draw() {
     
     image(img, x, y, newWidth, newHeight);
     
-    // Add a black bar behind the text
+    // Add a black bar behind the text with padding
     fill(0);
     noStroke();
-    rect(0, y + newHeight - 40, width, 40); // Adjust the position as needed
+    rect(0, y - TOP_PADDING, width, BOTTOM_PADDING + 40); // Adjust the position as needed
     
     // Draw the result text on top of the image
     fill('#7868B2'); // Match CSS text color
