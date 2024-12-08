@@ -1,3 +1,9 @@
+// Constants for spacing and positions
+const UPLOAD_BUTTON_SPACING = 10;
+const LABEL_SIZE = 32;
+const CANVAS_WIDTH = 640;
+const CANVAS_HEIGHT = 520;
+
 // Video
 let video;
 let label = "Upload an Image";
@@ -24,25 +30,20 @@ function modelLoaded() {
 // Image upload
 function setup() {
   // Create the canvas
-  const canvas = createCanvas(640, 520);
+  const canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
   canvas.parent('canvas-container'); // Attach to the correct container
 
   // Create the file input (upload button)
   input = createFileInput(handleFile);
-
-  // Position the upload button just below the canvas
-  const canvasX = canvas.position().x; // X-coordinate of the canvas
-  const canvasY = canvas.position().y; // Y-coordinate of the canvas
-  input.position(canvasX, canvasY + canvas.height + 10); // Below the canvas
   
-  // Set the upload container style
-  input.parent('upload-container'); // Apply styles to the container
+  // Position the upload button just below the canvas
+  input.position(canvas.position().x, canvas.position().y + canvas.height + UPLOAD_BUTTON_SPACING);
 }
 
 function draw() {
   background(0);
   
-  textSize(32);
+  textSize(LABEL_SIZE);
   textAlign(CENTER, CENTER);
   fill(255);
   
@@ -59,8 +60,6 @@ function draw() {
   }
 }
 
-
-
 // STEP 3: Get the classification!
 function gotResults(error, results) {
   if (error) {
@@ -72,12 +71,12 @@ function gotResults(error, results) {
   label = results[0].label;
   confidence = results[0].confidence;
 }
+
 // STEP 2: Handle the file upload and classify the image
 function handleFile(file) {
   if (file.type === 'image') {
-    img = createImg(file.data, '', ''); // Create the image element with no alt text
+    img = createImg(file.data, '');
     img.hide(); // Hide the uploaded image element
-    img.parent('upload-container'); // Apply styles to the uploaded image
     label = "Classifying...";
     confidence = 0.0;
     classifier.classify(img, gotResults);
