@@ -74,7 +74,6 @@ function draw() {
   }
 }
 
-// STEP 3: Get the classification!
 function gotResults(error, results) {
   if (error) {
     console.error(error);
@@ -86,13 +85,17 @@ function gotResults(error, results) {
   confidence = results[0].confidence;
 }
 
-// STEP 2: Handle the file upload and classify the image
 function handleFile(file) {
   if (file.type === 'image') {
     img = createImg(file.data, '');
     img.hide(); // Hide the uploaded image element
     label = "Classifying...";
     confidence = 0.0;
+    
+    // Display the uploaded image
+    draw(); // Ensure the uploaded image is displayed on the canvas
+    
+    // Classify the image
     classifier.classify(img, gotResults);
   } else {
     console.error("Unsupported file type. Please upload an image.");
