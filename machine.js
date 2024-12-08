@@ -41,6 +41,7 @@ function setup() {
 }
 
 function draw() {
+  console.log("Drawing on canvas...");
   background(0);
   
   textSize(LABEL_SIZE);
@@ -104,11 +105,3 @@ function handleFile(file) {
     draw(); // Ensure the uploaded image is displayed on the canvas
     
     // Classify the image
-    classifier.classify(img, gotResults);
-  } else {
-    console.error("Unsupported file type. Please upload an image.");
-    label = "Invalid file type. Please upload an image.";
-    confidence = 0.0;
-    img = null;
-  }
-}
