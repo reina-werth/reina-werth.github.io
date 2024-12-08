@@ -198,6 +198,7 @@ div.scroll-container a img{
 }
 /* Footer */
 footer {
+    postion: relative;
     text-align: center; /* Center-align footer content */
     margin-top: 40px; /* Add spacing above the footer */
     padding: 10px; /* Add padding around footer text */
