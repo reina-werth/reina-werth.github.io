@@ -39,13 +39,16 @@ function draw() {
   
   textSize(LABEL_SIZE);
   textAlign(CENTER, CENTER);
-  fill(0, 0, 255); // Blue text color
+  fill(0, 0, 255); // Set text color to blue
   
   let rectHeight = 40;
   let rectY = height - rectHeight - 10;
-  fill(0, 150);
+  fill(0, 150); // Semi-transparent black
+  
+  // Draw a semi-transparent background rectangle for text
   rect(0, rectY, width, rectHeight);
 
+  // Display the label and confidence
   if (confidence > 0) {
     fill(0, 0, 255); // Blue text color
     text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
@@ -54,6 +57,7 @@ function draw() {
     text(label, width / 2, height - 16);
   }
 
+  // Display the uploaded image without stretching
   if (img) {
     let imgWidth = img.width;
     let imgHeight = img.height;
@@ -76,6 +80,7 @@ function gotResults(error, results) {
     confidence = results[0].confidence;
   }
   
+  // Redraw the canvas with the new results
   draw();
 }
 
