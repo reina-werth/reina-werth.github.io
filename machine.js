@@ -49,7 +49,7 @@ function draw() {
   
   // Display the label and confidence
   if (confidence > 0) {
-    text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
+    text(${label}: ${(confidence * 100).toFixed(2)}%, width / 2, height - 16);
   } else {
     text(label, width / 2, height - 16);
   }
@@ -71,8 +71,6 @@ function draw() {
     let y = (height - newHeight) / 2;
     
     image(img, x, y, newWidth, newHeight);
-  } else {
-    console.log("No image loaded");
   }
 }
 
@@ -81,12 +79,9 @@ function gotResults(error, results) {
     console.error(error);
     label = "Error during classification";
     confidence = 0.0;
-  } else if (results && results.length > 0) {
+  } else {
     label = results[0].label;
     confidence = results[0].confidence;
-  } else {
-    label = "No results found";
-    confidence = 0.0;
   }
   
   // Re-render to display the new results
