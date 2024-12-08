@@ -62,7 +62,7 @@ function draw() {
 // STEP 2: Handle the file upload and classify the image
 function handleFile(file) {
   if (file.type === 'image') {
-    img = createImg(file.data, '');
+    img = createImg(file.data, '', ''); // Create the image element with no alt text
     img.hide(); // Hide the uploaded image element
     img.parent('upload-container'); // Apply styles to the uploaded image
     label = "Classifying...";
