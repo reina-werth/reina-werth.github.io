@@ -67,6 +67,19 @@ function draw() {
 }
 
 
+  if (img) {
+    let imgWidth = img.width;
+    let imgHeight = img.height;
+    let scale = min(width / imgWidth, height / imgHeight);
+    let newWidth = imgWidth * scale;
+    let newHeight = imgHeight * scale;
+    let x = (width - newWidth) / 2;
+    let y = (height - newHeight) / 2;
+    image(img, x, y, newWidth, newHeight);
+  }
+}
+
+
 function gotResults(error, results) {
   if (error) {
     console.error(error);
