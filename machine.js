@@ -90,7 +90,7 @@ function gotResults(error, results) {
 
 function handleFile(file) {
   if (file.type === 'image') {
-    img = createImg(file.data, '', ''); // Empty string for the alt text
+    img = createImg(file.data, null); // Pass `null` to avoid issues with the second parameter
     img.hide(); // Hide the uploaded image element
     label = "Classifying...";
     confidence = 0.0;
