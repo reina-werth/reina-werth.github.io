@@ -59,14 +59,20 @@ function draw() {
     let imgWidth = img.width;
     let imgHeight = img.height;
     
-    // Center the image on the canvas without altering its aspect ratio
-    let x = (width - imgWidth) / 2;
-    let y = (height - imgHeight) / 2;
+    // Calculate the scale to maintain the aspect ratio
+    let scale = min(width / imgWidth, height / imgHeight);
     
-    image(img, x, y);
+    // Calculate the new dimensions based on the scale
+    let newWidth = imgWidth * scale;
+    let newHeight = imgHeight * scale;
+    
+    // Center the image
+    let x = (width - newWidth) / 2;
+    let y = (height - newHeight) / 2;
+    
+    image(img, x, y, newWidth, newHeight);
   }
 }
-
 
 // STEP 3: Get the classification!
 function gotResults(error, results) {
