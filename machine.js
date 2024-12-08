@@ -56,7 +56,15 @@ function draw() {
   
   // Display the uploaded image
   if (img) {
-    image(img, 0, 0, width, 480);
+    // Draw the image at its original size to maintain aspect ratio
+    let imgWidth = img.width;
+    let imgHeight = img.height;
+    
+    // Calculate the x and y position to center the image
+    let x = (width - imgWidth) / 2;
+    let y = (height - imgHeight) / 2;
+    
+    image(img, x, y, imgWidth, imgHeight);
   }
 }
 
