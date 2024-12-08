@@ -96,11 +96,20 @@ function handleFile(file) {
     label = "Classifying...";
     confidence = 0.0;
     
+    // Log the uploaded image to confirm it's loaded
+    console.log("Uploaded image:", img);
+    
     // Display the uploaded image
     draw(); // Ensure the uploaded image is displayed on the canvas
     
     // Classify the image
-    classifier.classify(img, gotResults);  // Corrected line with proper parenthesis
+    if (img) {
+      classifier.classify(img, gotResults);
+    } else {
+      console.error("No image to classify.");
+      label = "No image loaded";
+      confidence = 0.0;
+    }
   } else {
     console.error("Unsupported file type. Please upload an image.");
     label = "Invalid file type. Please upload an image.";
