@@ -54,7 +54,7 @@ function draw() {
     text(label, width / 2, height - 16);
   }
   
-  // Display the uploaded image without stretching
+  // Display the uploaded image with proper scaling
   if (img) {
     let imgWidth = img.width;
     let imgHeight = img.height;
@@ -73,37 +73,20 @@ function draw() {
     image(img, x, y, newWidth, newHeight);
   }
 }
-
-  
-  // Display the uploaded image without stretching
-  if (img) {
-    let imgWidth = img.width;
-    let imgHeight = img.height;
-    
-    // Calculate the scale to maintain the aspect ratio
-    let scale = min(width / imgWidth, height / imgHeight);
-    
-    // Calculate the new dimensions based on the scale
-    let newWidth = imgWidth * scale;
-    let newHeight = imgHeight * scale;
-    
-    // Center the image
-    let x = (width - newWidth) / 2;
-    let y = (height - newHeight) / 2;
-    
-    image(img, x, y, newWidth, newHeight);
-  }
-
 
 function gotResults(error, results) {
   if (error) {
     console.error(error);
-    return;
+    label = "Error during classification";
+    confidence = 0.0;
+  } else {
+    label = results[0].label;
+    confidence = results[0].confidence;
   }
-  label = results[0].label;
-  confidence = nf(results[0].confidence, 0, 2);
-}
   
+  // Re-render to display the new results
+  draw();
+}
 
 function handleFile(file) {
   if (file.type === 'image') {
@@ -112,20 +95,11 @@ function handleFile(file) {
     label = "Classifying...";
     confidence = 0.0;
     
-    // Log the uploaded image to confirm it's loaded
-    console.log("Uploaded image:", img);
-    
     // Display the uploaded image
     draw(); // Ensure the uploaded image is displayed on the canvas
     
     // Classify the image
-    if (img) {
-      classifier.classify(img, gotResults);
-    } else {
-      console.error("No image to classify.");
-      label = "No image loaded";
-      confidence = 0.0;
-    }
+    classifier.classify(img, gotResults);
   } else {
     console.error("Unsupported file type. Please upload an image.");
     label = "Invalid file type. Please upload an image.";
