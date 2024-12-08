@@ -65,6 +65,11 @@ function draw() {
     
     image(img, x, y, newWidth, newHeight);
     
+    // Add a black bar behind the text
+    fill(0);
+    noStroke();
+    rect(0, y + newHeight - 40, width, 40); // Adjust the position as needed
+    
     // Draw the result text on top of the image
     fill('#7868B2'); // Match CSS text color
     textAlign(CENTER, CENTER);
