@@ -1,3 +1,39 @@
+// Constants for spacing and positions
+const UPLOAD_BUTTON_SPACING = 10;
+const LABEL_SIZE = 32;
+const CANVAS_WIDTH = 640;
+const CANVAS_HEIGHT = 520;
+
+let label = "Upload an Image";
+let confidence = 0.0;
+let classifier;
+let modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
+
+let input;
+let img;
+
+// STEP 1: Load the model!
+function preload() {
+  try {
+    classifier = ml5.imageClassifier(modelURL + 'model.json', modelLoaded);
+  } catch (error) {
+    console.error("Error loading the model:", error);
+  }
+}
+
+function modelLoaded() {
+  console.log("Model loaded successfully!");
+}
+
+// Image upload
+function setup() {
+  const canvas = createCanvas(CANVAS_WIDTH, CANVAS_HEIGHT);
+  canvas.parent('canvas-container');
+
+  input = createFileInput(handleFile);
+  input.position(canvas.position().x, canvas.position().y + canvas.height + UPLOAD_BUTTON_SPACING);
+}
+
 function draw() {
   background(0);
   
@@ -26,6 +62,41 @@ function draw() {
     let newHeight = imgHeight * scale;
     let x = (width - newWidth) / 2;
     let y = (height - newHeight) / 2;
+    
+    // Add padding around the image
+    let padding = 20;
+    x = max(padding, x);
+    y = max(padding, y);
+    
     image(img, x, y, newWidth, newHeight);
+  }
+}
+
+function gotResults(error, results) {
+  if (error) {
+    console.error(error);
+    label = "Error during classification";
+    confidence = 0.0;
+  } else {
+    label = results[0].label;
+    confidence = results[0].confidence;
+  }
+  
+  draw();
+}
+
+function handleFile(file) {
+  if (file.type === 'image') {
+    img = createImg(file.data, null);
+    img.hide();
+    label = "Classifying...";
+    confidence = 0.0;
+    draw();
+    classifier.classify(img, gotResults);
+  } else {
+    console.error("Unsupported file type. Please upload an image.");
+    label = "Invalid file type. Please upload an image.";
+    confidence = 0.0;
+    img = null;
   }
 }
