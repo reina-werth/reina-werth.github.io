@@ -89,21 +89,4 @@ function gotResults(error, results) {
 }
 
 function handleFile(file) {
-  if (file.type === 'image') {
-    img = createImg(file.data, '');
-    img.hide(); // Hide the uploaded image element
-    label = "Classifying...";
-    confidence = 0.0;
-    
-    // Display the uploaded image
-    draw(); // Ensure the uploaded image is displayed on the canvas
-    
-    // Classify the image
-    classifier.classify(img, gotResults);
-  } else {
-    console.error("Unsupported file type. Please upload an image.");
-    label = "Invalid file type. Please upload an image.";
-    confidence = 0.0;
-    img = null;
-  }
-}
+  if
