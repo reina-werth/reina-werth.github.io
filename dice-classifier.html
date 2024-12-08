@@ -1,83 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teachable Machine Image Classification</title>
-    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
+<script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta charset="utf-8" />
+
 </head>
+
 <body>
-    <h1>Upload an Image to Classify</h1>
-    
-    <!-- Image upload button -->
-    <input type="file" id="fileInput" onchange="handleFile(event)">
-    
-    <!-- Canvas to display the image -->
-    <div id="canvas-container"></div>
-    
-    <!-- Classification result -->
-    <div id="classification-result">
-        <p><strong>Label:</strong> <span id="label">Waiting...</span></p>
-        <p><strong>Confidence:</strong> <span id="confidence">0.00</span></p>
+    <div class=content-wrapper>
+         <script src="machine.js">Your browser does not support this function</script>
     </div>
-
-    <script type="text/javascript">
-      
-// Video
-let video;
-let label = "Upload an Image";
-let confidence = 0.0;
-let classifier;
-let modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
-
-let input;
-let img;
-
-// STEP 1: Load the model!
-function preload() {
-  classifier = ml5.imageClassifier(modelURL + 'model.json');
-}
-
-  // Image upload
-function setup() {
-  createCanvas(640, 520);
-  input = createFileInput(handleFile);
-  input.position();
-}
-
-function draw() {
-  background(0);
-  
-  textSize(32)
-  textAlign(CENTER, CENTER);
-  fill(255);
-  text(label + " " + confidence, width / 2, height - 16)
-  
-  if (img) {
-    image(img, 0, 0, width, 480)
-  }
-}
-
-// STEP 3: Get the classification!
-function gotResults(error, results) {
-  if (error) {
-    console.error(error);
-    return;
-  }
-  label = results[0].label;
-  confidence = nf(results[0].confidence, 0, 2);
-}
-// STEP 2: Handle the file-upload and do the classification
-function handleFile(file) {
-  print(file);
-  if (file.type === 'image') {
-    img = createImg(file.data, '');
-    img.hide();
-    classifier.classify(img, gotResults);
-  } else {
-    img = null;
-  }
-}
-    </script>
 </body>
+
 </html>
