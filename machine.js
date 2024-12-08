@@ -1,4 +1,4 @@
-// Video
+t// Video
 let video;
 let label = "Upload an Image";
 let confidence = 0.0;
@@ -29,7 +29,7 @@ function draw() {
   text(label + " " + confidence, width / 2, height - 16)
   
   if (img) {
-    image(img, 0, 0, width, 480)
+    image(img, 0, 0, width, height)
   }
 }
 
