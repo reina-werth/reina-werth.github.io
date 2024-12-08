@@ -29,7 +29,7 @@ function draw() {
   text(label + " " + confidence, width / 2, height - 16)
   
   if (img) {
-    image(img, 0, 0, width, height)
+    image(img, 0, 0, width, 480)
   }
 }
 
