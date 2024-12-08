@@ -39,7 +39,7 @@ function draw() {
   
   textSize(LABEL_SIZE);
   textAlign(CENTER, CENTER);
-  fill(255);
+  fill(0, 0, 255); // Change fill color to blue
   
   let rectHeight = 40;
   let rectY = height - rectHeight - 10;
@@ -47,10 +47,10 @@ function draw() {
   rect(0, rectY, width, rectHeight);
 
   if (confidence > 0) {
-    fill(255);
+    fill(0, 0, 255); // Change fill color to blue
     text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
   } else {
-    fill(255);
+    fill(0, 0, 255); // Change fill color to blue
     text(label, width / 2, height - 16);
   }
 
@@ -65,6 +65,7 @@ function draw() {
     image(img, x, y, newWidth, newHeight);
   }
 }
+
 
 function gotResults(error, results) {
   if (error) {
