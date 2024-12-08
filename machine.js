@@ -1,4 +1,4 @@
-t// Video
+// Video
 let video;
 let label = "Upload an Image";
 let confidence = 0.0;
