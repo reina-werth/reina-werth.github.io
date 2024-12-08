@@ -45,7 +45,7 @@ function draw() {
   let rectY = height - rectHeight - 10;
   fill(0, 150);
   rect(0, rectY, width, rectHeight);
-
+  
   if (confidence > 0) {
     fill(0, 0, 255); // Change fill color to blue
     text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
@@ -53,7 +53,7 @@ function draw() {
     fill(0, 0, 255); // Change fill color to blue
     text(label, width / 2, height - 16);
   }
-
+  
   if (img) {
     let imgWidth = img.width;
     let imgHeight = img.height;
@@ -65,6 +65,7 @@ function draw() {
     image(img, x, y, newWidth, newHeight);
   }
 }
+
 
 
   if (img) {
