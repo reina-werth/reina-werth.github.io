@@ -78,16 +78,12 @@ function draw() {
 function gotResults(error, results) {
   if (error) {
     console.error(error);
-    label = "Error during classification";
-    confidence = 0.0;
-  } else {
-    label = results[0].label;
-    confidence = results[0].confidence;
+    return;
   }
-  
-  // Re-render to display the new results
-  draw();
+  label = results[0].label;
+  confidence = nf(results[0].confidence, 0, 2);
 }
+  
 
 function handleFile(file) {
   if (file.type === 'image') {
