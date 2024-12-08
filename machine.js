@@ -83,6 +83,7 @@ function gotResults(error, results) {
   }
   label = results[0].label;
   confidence = results[0].confidence;
+  draw(); // Re-render to display the new results
 }
 
 function handleFile(file) {
