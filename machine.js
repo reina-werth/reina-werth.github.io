@@ -49,7 +49,7 @@ function draw() {
   
   // Display the label and confidence
   if (confidence > 0) {
-    text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
+    text(`${label}: ${ (confidence * 100).toFixed(2) }%`, width / 2, height - 16);
   } else {
     text(label, width / 2, height - 16);
   }
