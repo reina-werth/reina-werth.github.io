@@ -41,7 +41,6 @@ function setup() {
 }
 
 function draw() {
-  console.log("Drawing on canvas...");
   background(0);
   
   textSize(LABEL_SIZE);
@@ -73,7 +72,7 @@ function draw() {
     
     image(img, x, y, newWidth, newHeight);
   } else {
-    console.error("No image loaded");
+    console.log("No image loaded");
   }
 }
 
@@ -102,12 +101,7 @@ function handleFile(file) {
     confidence = 0.0;
     
     // Display the uploaded image
-    if (img) {
-      console.log("Displaying uploaded image:", img);
-      draw(); // Ensure the uploaded image is displayed on the canvas
-    } else {
-      console.error("No image loaded");
-    }
+    draw(); // Ensure the uploaded image is displayed on the canvas
     
     // Classify the image
     classifier.classify(img, gotResults);
