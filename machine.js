@@ -54,7 +54,7 @@ function draw() {
     text(label, width / 2, height - 16);
   }
   
-  // Display the uploaded image with proper scaling
+  // Display the uploaded image without stretching
   if (img) {
     let imgWidth = img.width;
     let imgHeight = img.height;
@@ -84,7 +84,7 @@ function gotResults(error, results) {
     confidence = results[0].confidence;
   }
   
-  // Re-render to display the new results
+  // Redraw the canvas with the new results
   draw();
 }
 
@@ -95,7 +95,7 @@ function handleFile(file) {
     label = "Classifying...";
     confidence = 0.0;
     
-    // Display the uploaded image
+    // Update the display to show the uploaded image
     draw(); // Ensure the uploaded image is displayed on the canvas
     
     // Classify the image
