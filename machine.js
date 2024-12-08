@@ -45,12 +45,20 @@ function draw() {
   
   textSize(LABEL_SIZE);
   textAlign(CENTER, CENTER);
-  fill(255);
+  fill(255); // White text color
+  
+  // Add a semi-transparent background rectangle
+  let rectHeight = 40; // Adjust height as needed
+  let rectY = height - rectHeight - 10; // Adjust vertical position as needed
+  fill(0, 150); // Semi-transparent black
+  rect(0, rectY, width, rectHeight);
   
   // Display the label and confidence
   if (confidence > 0) {
+    fill(255); // White text color
     text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
   } else {
+    fill(255); // White text color
     text(label, width / 2, height - 16);
   }
   
@@ -90,7 +98,7 @@ function gotResults(error, results) {
 
 function handleFile(file) {
   if (file.type === 'image') {
-    img = createImg(file.data, null); // Pass `null` to avoid issues with the second parameter
+    img = createImg(file.data, null); // Explicitly set the second parameter to null
     img.hide(); // Hide the uploaded image element
     label = "Classifying...";
     confidence = 0.0;
