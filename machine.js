@@ -23,10 +23,19 @@ function modelLoaded() {
 
 // Image upload
 function setup() {
-  createCanvas(640, 520);
+  // Create the canvas
+  const canvas = createCanvas(640, 520);
+  canvas.parent('canvas-container'); // Attach to the correct container
+
+  // Create the file input (upload button)
   input = createFileInput(handleFile);
-  input.position(10, height + 10); // Position the file input below the canvas
+  
+  // Position the upload button just below the canvas
+  const canvasX = canvas.position().x; // X-coordinate of the canvas
+  const canvasY = canvas.position().y; // Y-coordinate of the canvas
+  input.position(canvasX, canvasY + canvas.height + 10); // Below the canvas
 }
+
 
 function draw() {
   background(0);
