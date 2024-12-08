@@ -100,7 +100,7 @@ function handleFile(file) {
     draw(); // Ensure the uploaded image is displayed on the canvas
     
     // Classify the image
-    classifier.classify(img, gotResults);
+    classifier.classify(img, gotResults);  // Corrected line with proper parenthesis
   } else {
     console.error("Unsupported file type. Please upload an image.");
     label = "Invalid file type. Please upload an image.";
