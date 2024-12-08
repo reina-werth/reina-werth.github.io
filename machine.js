@@ -10,26 +10,41 @@ let img;
 
 // STEP 1: Load the model!
 function preload() {
-  classifier = ml5.imageClassifier(modelURL + 'model.json');
+  try {
+    classifier = ml5.imageClassifier(modelURL + 'model.json', modelLoaded);
+  } catch (error) {
+    console.error("Error loading the model:", error);
+  }
 }
 
-  // Image upload
+function modelLoaded() {
+  console.log("Model loaded successfully!");
+}
+
+// Image upload
 function setup() {
   createCanvas(640, 520);
   input = createFileInput(handleFile);
-  input.position();
+  input.position(10, height + 10); // Position the file input below the canvas
 }
 
 function draw() {
   background(0);
   
-  textSize(32)
+  textSize(32);
   textAlign(CENTER, CENTER);
   fill(255);
-  text(label + " " + confidence, width / 2, height - 16)
   
+  // Display the label and confidence
+  if (confidence > 0) {
+    text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
+  } else {
+    text(label, width / 2, height - 16);
+  }
+  
+  // Display the uploaded image
   if (img) {
-    image(img, 0, 0, width, 480)
+    image(img, 0, 0, width, 480);
   }
 }
 
@@ -37,19 +52,26 @@ function draw() {
 function gotResults(error, results) {
   if (error) {
     console.error(error);
+    label = "Error during classification";
+    confidence = 0.0;
     return;
   }
   label = results[0].label;
-  confidence = nf(results[0].confidence, 0, 2);
+  confidence = results[0].confidence;
 }
-// STEP 2: Handle the file-upload and do the classification
+
+// STEP 2: Handle the file upload and classify the image
 function handleFile(file) {
-  print(file);
   if (file.type === 'image') {
     img = createImg(file.data, '');
-    img.hide();
+    img.hide(); // Hide the uploaded image element
+    label = "Classifying...";
+    confidence = 0.0;
     classifier.classify(img, gotResults);
   } else {
+    console.error("Unsupported file type. Please upload an image.");
+    label = "Invalid file type. Please upload an image.";
+    confidence = 0.0;
     img = null;
   }
 }
