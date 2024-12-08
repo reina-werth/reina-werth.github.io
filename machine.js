@@ -49,11 +49,10 @@ function draw() {
   
   // Display the label and confidence
   if (confidence > 0) {
-    text(`${label}: ${ (confidence * 100).toFixed(2) }%`, width / 2, height - 16);
+    text(`${label}: ${(confidence * 100).toFixed(2)}%`, width / 2, height - 16);
   } else {
     text(label, width / 2, height - 16);
   }
-  
   
   // Display the uploaded image without stretching
   if (img) {
@@ -74,6 +73,27 @@ function draw() {
     image(img, x, y, newWidth, newHeight);
   }
 }
+
+  
+  // Display the uploaded image without stretching
+  if (img) {
+    let imgWidth = img.width;
+    let imgHeight = img.height;
+    
+    // Calculate the scale to maintain the aspect ratio
+    let scale = min(width / imgWidth, height / imgHeight);
+    
+    // Calculate the new dimensions based on the scale
+    let newWidth = imgWidth * scale;
+    let newHeight = imgHeight * scale;
+    
+    // Center the image
+    let x = (width - newWidth) / 2;
+    let y = (height - newHeight) / 2;
+    
+    image(img, x, y, newWidth, newHeight);
+  }
+
 
 function gotResults(error, results) {
   if (error) {
