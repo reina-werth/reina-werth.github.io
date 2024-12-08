@@ -54,19 +54,19 @@ function draw() {
     text(label, width / 2, height - 16);
   }
   
-  // Display the uploaded image
+  // Display the uploaded image without stretching
   if (img) {
-    // Draw the image at its original size to maintain aspect ratio
     let imgWidth = img.width;
     let imgHeight = img.height;
     
-    // Calculate the x and y position to center the image
+    // Center the image on the canvas without altering its aspect ratio
     let x = (width - imgWidth) / 2;
     let y = (height - imgHeight) / 2;
     
-    image(img, x, y, imgWidth, imgHeight);
+    image(img, x, y);
   }
 }
+
 
 // STEP 3: Get the classification!
 function gotResults(error, results) {
