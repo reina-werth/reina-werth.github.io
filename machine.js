@@ -64,9 +64,9 @@ function handleFile(file) {
   if (file.type === 'image') {
     img = createImg(file.data, '');
     img.hide(); // Hide the uploaded image element
+    img.parent('upload-container'); // Apply styles to the uploaded image
     label = "Classifying...";
     confidence = 0.0;
-    img.parent('upload-container'); // Apply styles to the uploaded image
     classifier.classify(img, gotResults);
   } else {
     console.error("Unsupported file type. Please upload an image.");
