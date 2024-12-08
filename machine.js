@@ -9,7 +9,7 @@ let video;
 let label = "Upload an Image";
 let confidence = 0.0;
 let classifier;
-let modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/';
+let modelURL = 'https://teachablemachine.withgoogle.com/models/R1ff7lXqa/model.json';
 
 let input;
 let img;
