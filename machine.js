@@ -90,7 +90,7 @@ function handleFile(file) {
     img.hide();
     label = "Classifying...";
     confidence = 0.0;
-    draw();
+    draw(); // Ensure the uploaded image is displayed on the canvas
     classifier.classify(img, gotResults);
   } else {
     console.error("Unsupported file type. Please upload an image.");
