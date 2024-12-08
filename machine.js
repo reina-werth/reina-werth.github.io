@@ -71,6 +71,8 @@ function draw() {
     let y = (height - newHeight) / 2;
     
     image(img, x, y, newWidth, newHeight);
+  } else {
+    console.log("No image loaded");
   }
 }
 
@@ -79,9 +81,12 @@ function gotResults(error, results) {
     console.error(error);
     label = "Error during classification";
     confidence = 0.0;
-  } else {
+  } else if (results && results.length > 0) {
     label = results[0].label;
     confidence = results[0].confidence;
+  } else {
+    label = "No results found";
+    confidence = 0.0;
   }
   
   // Re-render to display the new results
@@ -89,4 +94,21 @@ function gotResults(error, results) {
 }
 
 function handleFile(file) {
-  if
+  if (file.type === 'image') {
+    img = createImg(file.data, '');
+    img.hide(); // Hide the uploaded image element
+    label = "Classifying...";
+    confidence = 0.0;
+    
+    // Display the uploaded image
+    draw(); // Ensure the uploaded image is displayed on the canvas
+    
+    // Classify the image
+    classifier.classify(img, gotResults);
+  } else {
+    console.error("Unsupported file type. Please upload an image.");
+    label = "Invalid file type. Please upload an image.";
+    confidence = 0.0;
+    img = null;
+  }
+}
