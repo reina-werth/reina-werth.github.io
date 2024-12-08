@@ -59,6 +59,19 @@ function draw() {
   }
 }
 
+
+
+// STEP 3: Get the classification!
+function gotResults(error, results) {
+  if (error) {
+    console.error(error);
+    label = "Error during classification";
+    confidence = 0.0;
+    return;
+  }
+  label = results[0].label;
+  confidence = results[0].confidence;
+}
 // STEP 2: Handle the file upload and classify the image
 function handleFile(file) {
   if (file.type === 'image') {
@@ -74,16 +87,4 @@ function handleFile(file) {
     confidence = 0.0;
     img = null;
   }
-}
-
-// STEP 3: Get the classification!
-function gotResults(error, results) {
-  if (error) {
-    console.error(error);
-    label = "Error during classification";
-    confidence = 0.0;
-    return;
-  }
-  label = results[0].label;
-  confidence = results[0].confidence;
 }
