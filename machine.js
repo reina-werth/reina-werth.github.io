@@ -79,11 +79,13 @@ function gotResults(error, results) {
     console.error(error);
     label = "Error during classification";
     confidence = 0.0;
-    return;
+  } else {
+    label = results[0].label;
+    confidence = results[0].confidence;
   }
-  label = results[0].label;
-  confidence = results[0].confidence;
-  draw(); // Re-render to display the new results
+  
+  // Re-render to display the new results
+  draw();
 }
 
 function handleFile(file) {
