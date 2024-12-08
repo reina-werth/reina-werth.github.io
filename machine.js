@@ -63,10 +63,6 @@ function draw() {
     let x = (width - newWidth) / 2;
     let y = (height - newHeight) / 2;
     
-    // Adjust padding to ensure text doesn't overlap
-    let padding = 20; // Increase padding as needed
-    y = max(padding, y);
-    
     image(img, x, y, newWidth, newHeight);
     
     // Draw the result text on top of the image
