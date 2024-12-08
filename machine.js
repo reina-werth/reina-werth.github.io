@@ -82,6 +82,7 @@ function draw() {
   }
 }
 
+
 function gotResults(error, results) {
   if (error) {
     console.error(error);
